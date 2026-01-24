@@ -1,0 +1,105 @@
+.table-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  flex-shrink: 0;
+}
+
+.table-header h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.header-actions {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.table-scroll-container {
+  overflow-x: auto;
+  overflow-y: auto;
+  max-height: 600px;
+  flex: 1;
+}
+
+.logging-table {
+  width: 100%;
+}
+
+.clickable-row {
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+  }
+}
+
+.mat-mdc-header-row {
+  background-color: rgba(0, 0, 0, 0.04);
+  font-weight: 500;
+}
+
+.no-data {
+  text-align: center;
+  padding: 24px;
+  color: #666;
+}
+
+.level-chip {
+  font-weight: 500;
+  width: 36px !important;
+  height: 36px !important;
+  min-height: 36px !important;
+  min-width: 36px !important;
+  padding: 0 !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50% !important;
+  cursor: pointer;
+
+  .chip-icon {
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+  }
+
+  // Icon colors per level - using darker, more saturated colors for visibility
+  .chip-icon-error {
+    color: #c62828 !important; // Dark red for ERROR
+  }
+
+  .chip-icon-warn {
+    color: #ef6c00 !important; // Dark orange for WARN
+  }
+
+  .chip-icon-info {
+    color: #1565c0 !important; // Dark blue for INFO
+  }
+
+  // Override Material Design chip internal padding
+  ::ng-deep {
+    .mdc-evolution-chip__cell--primary,
+    .mdc-evolution-chip__action--primary {
+      padding: 0 !important;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}

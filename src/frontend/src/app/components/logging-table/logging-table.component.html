@@ -1,0 +1,50 @@
+<div class="table-container">
+  <div class="table-header">
+    <h3>Log Entries ({{ logCount() }})</h3>
+    <div class="header-actions">
+      <button mat-icon-button color="primary" (click)="openAddDialog()" matTooltip="Add Log Entry" aria-label="Add Log Entry">
+        <mat-icon>add</mat-icon>
+      </button>
+      <button mat-icon-button (click)="refresh.emit()" matTooltip="Refresh Logs" aria-label="Refresh Logs">
+        <mat-icon>refresh</mat-icon>
+      </button>
+    </div>
+  </div>
+  
+  <div class="table-scroll-container">
+    @if (logCount() === 0) {
+      <div class="no-data">
+        <p>No log entries available</p>
+      </div>
+    } @else {
+      <table mat-table [dataSource]="dataSource" matSort matSortActive="id" matSortDirection="desc" class="logging-table">
+        <!-- ID Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header="id">ID</th>
+          <td mat-cell *matCellDef="let log">{{ log.id.toString() }}</td>
+        </ng-container>
+
+        <!-- Date Column -->
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header="date">Date</th>
+          <td mat-cell *matCellDef="let log">{{ formatTimestamp(log.timestamp) }}</td>
+        </ng-container>
+
+        <!-- Level Column -->
+        <ng-container matColumnDef="level">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header="level">Level</th>
+          <td mat-cell *matCellDef="let log">
+            <mat-chip [color]="logLevelService.getLevelColor(log.level)" class="level-chip" [matTooltip]="log.level" [attr.aria-label]="'Log level: ' + log.level">
+              <mat-icon class="chip-icon" [ngClass]="'chip-icon-' + log.level.toLowerCase()" aria-hidden="true">{{ logLevelService.getLevelIcon(log.level) }}</mat-icon>
+            </mat-chip>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns" 
+            (click)="openDetailDialog(row)"
+            class="clickable-row"></tr>
+      </table>
+    }
+  </div>
+</div>

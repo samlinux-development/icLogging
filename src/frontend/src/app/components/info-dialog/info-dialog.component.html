@@ -1,0 +1,149 @@
+<div class="dialog-container">
+  <h2 mat-dialog-title>
+    <mat-icon class="title-icon">info</mat-icon>
+    <span>About IC Logging</span>
+  </h2>
+
+  <mat-dialog-content>
+    <div class="content-wrapper">
+      <!-- Overview Section -->
+      <mat-card class="info-section">
+        <mat-card-header>
+          <mat-card-title>
+            <mat-icon class="section-icon">description</mat-icon>
+            <span>Overview</span>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-divider></mat-divider>
+        <mat-card-content>
+          <p class="info-text">
+            IC Logging is a demo application for logging data on the Internet Computer (IC) 
+            with a Motoko backend and Angular 21 frontend. It demonstrates how to build 
+            decentralized applications using immutable data structures.
+          </p>
+          <p class="info-text" style="margin-top: 12px;">
+            <strong>Note:</strong> In a modified version, the add functionality can also be 
+            performed by other agents besides the web UI, such as Node.js or Go agent services 
+            running elsewhere. The backend API is accessible from any IC-compatible agent.
+          </p>
+        </mat-card-content>
+      </mat-card>
+
+      <!-- Features Section -->
+      <mat-card class="info-section">
+        <mat-card-header>
+          <mat-card-title>
+            <mat-icon class="section-icon">star</mat-icon>
+            <span>Features</span>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-divider></mat-divider>
+        <mat-card-content>
+          <ul class="feature-list">
+            <li>
+              <mat-icon class="list-icon">check_circle</mat-icon>
+              <span>Immutable log entries stored on the Internet Computer</span>
+            </li>
+            <li>
+              <mat-icon class="list-icon">check_circle</mat-icon>
+              <span>Material Design 21 UI components</span>
+            </li>
+            <li>
+              <mat-icon class="list-icon">check_circle</mat-icon>
+              <span>Real-time log viewing with sorting and filtering</span>
+            </li>
+            <li>
+              <mat-icon class="list-icon">check_circle</mat-icon>
+              <span>Add logs with different levels (INFO, WARN, ERROR)</span>
+            </li>
+            <li>
+              <mat-icon class="list-icon">check_circle</mat-icon>
+              <span>Detailed log entry view</span>
+            </li>
+            <li>
+              <mat-icon class="list-icon">check_circle</mat-icon>
+              <span>Persistent storage using Motoko's immutable Map</span>
+            </li>
+          </ul>
+        </mat-card-content>
+      </mat-card>
+
+      <!-- Technology Stack Section -->
+      <mat-card class="info-section">
+        <mat-card-header>
+          <mat-card-title>
+            <mat-icon class="section-icon">code</mat-icon>
+            <span>Technology Stack</span>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-divider></mat-divider>
+        <mat-card-content>
+          <div class="tech-grid">
+            <div class="tech-item">
+              <div class="tech-label">Backend</div>
+              <div class="tech-value">Motoko</div>
+            </div>
+            <div class="tech-item">
+              <div class="tech-label">Frontend</div>
+              <div class="tech-value">Angular 21</div>
+            </div>
+            <div class="tech-item">
+              <div class="tech-label">UI Framework</div>
+              <div class="tech-value">Angular Material 21</div>
+            </div>
+            <div class="tech-item">
+              <div class="tech-label">IC SDK</div>
+              <div class="tech-value">@icp-sdk/core v5</div>
+            </div>
+            <div class="tech-item">
+              <div class="tech-label">Storage</div>
+              <div class="tech-value">mo:core/pure/Map</div>
+            </div>
+            <div class="tech-item">
+              <div class="tech-label">Platform</div>
+              <div class="tech-value">Internet Computer</div>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <!-- Backend API Section -->
+      <mat-card class="info-section">
+        <mat-card-header>
+          <mat-card-title>
+            <mat-icon class="section-icon">api</mat-icon>
+            <span>Backend API</span>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-divider></mat-divider>
+        <mat-card-content>
+          <div class="api-list">
+            <div class="api-item">
+              <code class="api-method">log(level, message)</code>
+              <span class="api-desc">Add a log entry</span>
+            </div>
+            <div class="api-item">
+              <code class="api-method">getLogs()</code>
+              <span class="api-desc">Get all log entries</span>
+            </div>
+            <div class="api-item">
+              <code class="api-method">getLog(id)</code>
+              <span class="api-desc">Get a specific log entry by ID</span>
+            </div>
+            <div class="api-item">
+              <code class="api-method">getLogCount()</code>
+              <span class="api-desc">Get the total number of log entries</span>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-raised-button color="primary" (click)="close()" aria-label="Close dialog">
+      <mat-icon>close</mat-icon>
+      Close
+    </button>
+  </mat-dialog-actions>
+</div>

@@ -1,0 +1,24 @@
+{
+  "name": "ic-logging",
+  "version": "1.0.0",
+  "description": "Internet Computer logging demo with Motoko backend and Angular frontend",
+  "scripts": {
+    "build": "cd src/frontend && npm run build",
+    "build:mainnet": "cd src/frontend && npm run build:mainnet",
+    "start": "cd src/frontend && npm start",
+    "install:frontend": "cd src/frontend && npm install",
+    "generate": "dfx generate backend",
+    "deploy": "dfx deploy",
+    "deploy:backend": "dfx deploy backend",
+    "dfx:start": "dfx start",
+    "dfx:stop": "dfx stop",
+    "postinstall": "npm run install:frontend"
+  },
+  "keywords": [
+    "internet-computer",
+    "motoko",
+    "angular"
+  ],
+  "author": "Roland Bole",
+  "license": "MIT"
+}

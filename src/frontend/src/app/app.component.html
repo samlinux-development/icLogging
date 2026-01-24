@@ -1,0 +1,15 @@
+<div class="app-container">
+  <mat-toolbar color="primary">
+    <mat-icon>description</mat-icon>
+    <span>{{ title }}</span>
+    <span class="spacer"></span>
+    <button mat-button (click)="openInfoDialog()" aria-label="About">
+      <mat-icon>info</mat-icon>
+      <span>About</span>
+    </button>
+  </mat-toolbar>
+
+  <div class="content">
+    <app-logging></app-logging>
+  </div>
+</div>

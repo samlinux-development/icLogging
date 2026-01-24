@@ -1,0 +1,45 @@
+<div class="dialog-container">
+  <h2 mat-dialog-title>
+    <mat-icon>add</mat-icon>
+    Add Log Entry
+  </h2>
+
+  <mat-dialog-content>
+    <form class="add-log-form">
+      <mat-form-field appearance="outline" class="full-width select-field">
+        <mat-label>Log Level</mat-label>
+        <mat-select [(ngModel)]="logLevel" name="level" required>
+          <mat-option value="INFO">INFO</mat-option>
+          <mat-option value="WARN">WARN</mat-option>
+          <mat-option value="ERROR">ERROR</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Message</mat-label>
+        <textarea matInput 
+                  [(ngModel)]="logMessage" 
+                  name="message"
+                  placeholder="Enter log message"
+                  rows="4"
+                  required></textarea>
+      </mat-form-field>
+    </form>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button (click)="onCancel()" [disabled]="isLoading" aria-label="Cancel">Cancel</button>
+    <button mat-raised-button 
+            color="primary" 
+            (click)="onSave()" 
+            [disabled]="!logMessage.trim() || isLoading"
+            aria-label="Save log entry">
+      @if (isLoading) {
+        <mat-spinner diameter="20" class="button-spinner"></mat-spinner>
+      } @else {
+        <mat-icon>save</mat-icon>
+      }
+      <span>{{ isLoading ? 'Saving...' : 'Save' }}</span>
+    </button>
+  </mat-dialog-actions>
+</div>

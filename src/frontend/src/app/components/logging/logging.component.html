@@ -1,0 +1,11 @@
+<div class="logging-container">
+  <mat-card class="logs-card">
+    <mat-card-content>
+      <app-logging-table 
+        [logs]="logs" 
+        (logAdded)="onLogAdded($event)"
+        (refresh)="loadLogs()">
+      </app-logging-table>
+    </mat-card-content>
+  </mat-card>
+</div>
