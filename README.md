@@ -1,6 +1,7 @@
-# icLogging
+# IC Decentralised Audit
 
-A production-ready logging application for the Internet Computer (IC) with a Motoko backend and Angular 21 frontend. Demonstrates immutable data structures, modern Angular patterns, and Material Design UI.
+Demo URL: https://gtn6w-niaaa-aaaam-afxaa-cai.
+A production-ready audit logging application for the Internet Computer (IC) with a Motoko backend and Angular 21 frontend. Demonstrates immutable data structures, modern Angular patterns, and Material Design UI.
 
 ## Project Structure
 
@@ -170,7 +171,7 @@ dfx deploy
 - **Motoko**: Internet Computer's native language
 - **Motoko Core Library**: Using `mo:core/pure/Map` for immutable, ordered map storage
 - **Persistent Actor**: State persists across upgrades
-- **1-based indexing**: Log entries start at ID 1
+- **1-based indexing**: Audit entries start at ID 1
 
 ### Frontend
 - **Angular 21**: Latest Angular with standalone components
@@ -190,16 +191,16 @@ The Motoko backend uses immutable data structures and provides the following met
   - **Required**: Must be called after deployment before adding any log entries
   - **Usage**: `dfx canister call backend setAuthKey "your-secret-key-here"`
 
-### Logging Operations
-- `log(key: Text, level: Text, message: Text) : async Nat` - Add a log entry (returns the new entry ID)
+### Audit Operations
+- `log(key: Text, level: Text, message: Text) : async Nat` - Add an audit entry (returns the new entry ID)
   - Requires the `key` parameter to match the configured `authKey`
-- `getLogs() : async [LogEntry]` - Get all log entries (ordered by ID)
-- `getLog(id: Nat) : async ?LogEntry` - Get a specific log entry by ID
-- `getLogCount() : async Nat` - Get the total number of log entries
+- `getLogs() : async [LogEntry]` - Get all audit entries (ordered by ID)
+- `getLog(id: Nat) : async ?LogEntry` - Get a specific audit entry by ID
+- `getLogCount() : async Nat` - Get the total number of audit entries
 
 **Note**: 
-- Log entries are immutable and cannot be deleted. This ensures a complete audit trail.
-- The authentication key must be set via `setAuthKey` before any log entries can be added.
+- Audit entries are immutable and cannot be deleted. This ensures a complete audit trail.
+- The authentication key must be set via `setAuthKey` before any audit entries can be added.
 
 ### LogEntry Type
 ```motoko
@@ -214,17 +215,17 @@ type LogEntry = {
 ## Frontend Features
 
 ### Core Functionality
-- **Log Table**: Sortable table with columns for ID, Date/Time, and Level
-- **Add Logs**: Dialog-based form to add new log entries with level selection
-- **View Details**: Click any row to view full log entry details in a modal
-- **Refresh**: Manual refresh button to reload logs from the backend
+- **Audit Table**: Sortable table with columns for ID, Date/Time, and Level
+- **Add Audit Entries**: Dialog-based form to add new audit entries with level selection
+- **View Details**: Click any row to view full audit entry details in a modal
+- **Refresh**: Manual refresh button to reload audit entries from the backend
 - **About Dialog**: Information about the application and technology stack
 
 ### UI/UX Features
 - **Material Design 21**: Modern, accessible UI components
 - **Responsive Design**: Works on desktop and mobile devices
 - **Sortable Columns**: Sort by ID, Date, or Level (default: ID descending)
-- **Visual Indicators**: Color-coded chips with icons for each log level
+- **Visual Indicators**: Color-coded icons for each audit level
 - **Error Handling**: User-friendly error messages via snackbar notifications
 - **Loading States**: Spinner indicators during async operations
 - **Accessibility**: ARIA labels and keyboard navigation support
@@ -232,14 +233,15 @@ type LogEntry = {
 ### Components
 - `LoggingComponent`: Main container component
 - `LoggingTableComponent`: Sortable table with row click handlers
-- `LoggingAddDialogComponent`: Modal dialog for adding new logs
-- `LoggingDetailDialogComponent`: Modal dialog for viewing log details
+- `LoggingAddDialogComponent`: Modal dialog for adding new audit entries
+- `LoggingDetailDialogComponent`: Modal dialog for viewing audit entry details
 - `InfoDialogComponent`: About/Information modal
 
 ### Services
 - `IcAgentService`: Manages IC agent initialization and actor creation
-- `LoggingService`: Handles all backend API calls for logging operations
-- `LogLevelService`: Shared utility for log level colors and icons
+- `LoggingService`: Handles all backend API calls for audit operations
+- `LogLevelService`: Shared utility for audit level colors and icons
+- `DateFormatService`: Utility service for formatting timestamps
 
 ### Production Features
 - **Memory Management**: Proper subscription cleanup with `takeUntil` pattern
@@ -266,7 +268,7 @@ type LogEntry = {
 ## Architecture
 
 ### Data Flow
-1. User interacts with Angular frontend (adds log, views details, etc.)
+1. User interacts with Angular frontend (adds audit entry, views details, etc.)
 2. Frontend service (`LoggingService`) calls IC agent service
 3. IC agent service (`IcAgentService`) manages actor connection to backend canister
 4. Backend canister processes request using immutable map storage
@@ -278,7 +280,7 @@ type LogEntry = {
 - **Component Communication**: Event emitters and service injection
 
 ### Key Design Decisions
-- **Immutable Logs**: Logs cannot be deleted, ensuring complete audit trail
+- **Immutable Audit Entries**: Audit entries cannot be deleted, ensuring complete audit trail
 - **Ordered Storage**: Map automatically maintains order by ID
 - **Standalone Components**: Modern Angular architecture without NgModules
 - **Service Layer**: Separation of concerns with dedicated services
@@ -286,7 +288,7 @@ type LogEntry = {
 
 ## External Agent Integration
 
-The backend API is accessible from any IC-compatible agent. In addition to the web UI, you can add logs programmatically using:
+The backend API is accessible from any IC-compatible agent. In addition to the web UI, you can add audit entries programmatically using:
 
 - **Node.js**: Using `@icp-sdk/core` or `@dfinity/agent`
 - **Go**: Using `github.com/dfinity/go-icp-sdk`
@@ -303,7 +305,7 @@ Example usage from external agents is documented in the About dialog within the 
 - **Port conflicts**: Change the port in `dfx.json` or stop other services using port 8080
 - **Network errors**: Ensure DFX is running (`dfx start`) and canisters are deployed
 - **Type errors**: Regenerate DID files with `dfx generate backend` after backend changes
-- **Authentication errors when adding logs**: 
+- **Authentication errors when adding audit entries**: 
   - Ensure `setAuthKey` has been called after deployment: `dfx canister call backend setAuthKey "your-key"`
   - Verify the `backendAuthKey` in your environment files matches the key set in the backend
   - Only the canister controller can call `setAuthKey` - check your DFX identity with `dfx identity whoami`
