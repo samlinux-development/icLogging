@@ -1,8 +1,8 @@
 <div class="table-container">
   <div class="table-header">
-    <h3>Log Entries ({{ logCount() }})</h3>
+    <h3>Audit Entries ({{ logCount() }})</h3>
     <div class="header-actions">
-      <button mat-icon-button color="primary" (click)="openAddDialog()" matTooltip="Add Log Entry" aria-label="Add Log Entry">
+      <button mat-icon-button color="primary" (click)="openAddDialog()" matTooltip="Add Audit Entry" aria-label="Add Audit Entry">
         <mat-icon>add</mat-icon>
       </button>
       <button mat-icon-button (click)="refresh.emit()" matTooltip="Refresh Logs" aria-label="Refresh Logs">
@@ -14,7 +14,7 @@
   <div class="table-scroll-container">
     @if (logCount() === 0) {
       <div class="no-data">
-        <p>No log entries available</p>
+        <p>No audit entries available</p>
       </div>
     } @else {
       <table mat-table [dataSource]="dataSource" matSort matSortActive="id" matSortDirection="desc" class="logging-table">
@@ -27,16 +27,14 @@
         <!-- Date Column -->
         <ng-container matColumnDef="date">
           <th mat-header-cell *matHeaderCellDef mat-sort-header="date">Date</th>
-          <td mat-cell *matCellDef="let log">{{ formatTimestamp(log.timestamp) }}</td>
+          <td mat-cell *matCellDef="let log">{{ dateFormatService.formatTimestamp(log.timestamp) }}</td>
         </ng-container>
 
         <!-- Level Column -->
         <ng-container matColumnDef="level">
           <th mat-header-cell *matHeaderCellDef mat-sort-header="level">Level</th>
           <td mat-cell *matCellDef="let log">
-            <mat-chip [color]="logLevelService.getLevelColor(log.level)" class="level-chip" [matTooltip]="log.level" [attr.aria-label]="'Log level: ' + log.level">
-              <mat-icon class="chip-icon" [ngClass]="'chip-icon-' + log.level.toLowerCase()" aria-hidden="true">{{ logLevelService.getLevelIcon(log.level) }}</mat-icon>
-            </mat-chip>
+            <mat-icon class="level-icon" [ngClass]="'level-icon-' + log.level.toLowerCase()" [matTooltip]="log.level" [attr.aria-label]="'Log level: ' + log.level">{{ logLevelService.getLevelIcon(log.level) }}</mat-icon>
           </td>
         </ng-container>
 

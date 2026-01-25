@@ -1,38 +1,28 @@
 <div class="dialog-container">
   <h2 mat-dialog-title>
     <mat-icon class="title-icon">article</mat-icon>
-    <span>Log Entry Details</span>
+    <span>Audit Entry Details</span>
   </h2>
 
   <mat-dialog-content>
     <div class="content-wrapper">
-      <!-- Header Information Card -->
-      <mat-card class="info-card">
-        <mat-card-content>
-          <div class="info-row">
-            <div class="info-item">
-              <div class="info-label">
-                <mat-icon class="info-icon">tag</mat-icon>
-                <span>ID</span>
-              </div>
-              <div class="info-value id-value">#{{ data.id.toString() }}</div>
-            </div>
-            
-            <div class="info-item">
-              <div class="info-label">
-                <mat-icon class="info-icon">flag</mat-icon>
-                <span>Level</span>
-              </div>
-              <div class="info-value">
-                <mat-chip [color]="logLevelService.getLevelColor(data.level)" class="level-chip">
-                  <mat-icon class="chip-icon" [ngClass]="'chip-icon-' + data.level.toLowerCase()">{{ logLevelService.getLevelIcon(data.level) }}</mat-icon>
-                  {{ data.level }}
-                </mat-chip>
-              </div>
-            </div>
+      <!-- Header Information -->
+      <div class="info-row">
+        <!-- Level icon on first line -->
+        <div class="info-item level-icon-item">
+          <div class="info-value">
+            <mat-icon class="level-icon" [ngClass]="'level-icon-' + data.level.toLowerCase()">{{ logLevelService.getLevelIcon(data.level) }}</mat-icon>
           </div>
-        </mat-card-content>
-      </mat-card>
+        </div>
+        
+        <!-- ID and date combined on second line -->
+        <div class="info-item id-timestamp-combined">
+          <div class="info-value id-timestamp-value">
+            <span class="id-badge">#{{ data.id.toString() }}</span>
+            <span class="timestamp-text"> - {{ dateFormatService.formatTimestamp(data.timestamp) }}</span>
+          </div>
+        </div>
+      </div>
 
       <!-- Message Card -->
       <mat-card class="message-card">
@@ -45,29 +35,6 @@
         <mat-divider></mat-divider>
         <mat-card-content>
           <div class="message-content">{{ data.message }}</div>
-        </mat-card-content>
-      </mat-card>
-
-      <!-- Timestamp Information Card -->
-      <mat-card class="timestamp-card">
-        <mat-card-header>
-          <mat-card-title>
-            <mat-icon class="section-icon">schedule</mat-icon>
-            <span>Timestamp</span>
-          </mat-card-title>
-        </mat-card-header>
-        <mat-divider></mat-divider>
-        <mat-card-content>
-          <div class="timestamp-row">
-            <div class="timestamp-item">
-              <div class="timestamp-label">Date</div>
-              <div class="timestamp-value">{{ formatDate(data.timestamp) }}</div>
-            </div>
-            <div class="timestamp-item">
-              <div class="timestamp-label">Time</div>
-              <div class="timestamp-value">{{ formatTime(data.timestamp) }}</div>
-            </div>
-          </div>
         </mat-card-content>
       </mat-card>
     </div>

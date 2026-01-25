@@ -6,7 +6,7 @@ const path = require('path');
 // Determine network: DFX_NETWORK env var or default to 'local'
 const network = process.env.DFX_NETWORK || 'local';
 
-// Generate environment file
+// Generate environment file from .env
 // Note: This script runs from src/frontend/ directory (via npm run build)
 const frontendDir = path.join(__dirname, '..');
 console.log(`>> Generating environment file for network: ${network}`);

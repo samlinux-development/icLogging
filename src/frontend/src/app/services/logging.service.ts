@@ -10,7 +10,7 @@ export class LoggingService {
   constructor(private icAgentService: IcAgentService) {}
 
   /**
-   * Add a log entry
+   * Add an audit entry
    */
   async log(level: string, message: string): Promise<bigint> {
     const actor = await this.icAgentService.getActor();
@@ -30,7 +30,7 @@ export class LoggingService {
   }
 
   /**
-   * Get a specific log entry by ID
+   * Get a specific audit entry by ID
    */
   async getLog(id: bigint): Promise<LogEntry | undefined> {
     const actor = await this.icAgentService.getActor();

@@ -3,10 +3,12 @@
   "version": "1.0.0",
   "scripts": {
     "ng": "ng",
+    "prestart": "node scripts/generate-env.js",
     "start": "ng serve",
     "build": "node scripts/build.js",
     "build:mainnet": "node scripts/deploy.js ic && ng build --output-path=../../dist/frontend --base-href=/ --configuration=mainnet && cd ../.. && dfx deploy frontend --network ic",
     "deploy:env": "node scripts/deploy.js",
+    "generate:env": "node scripts/generate-env.js",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },

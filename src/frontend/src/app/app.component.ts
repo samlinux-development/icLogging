@@ -22,7 +22,7 @@ import { InfoDialogComponent } from './components/info-dialog/info-dialog.compon
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'IC Logging Demo';
+  title = 'IC decentralised audit';
 
   constructor(private dialog: MatDialog) {}
 

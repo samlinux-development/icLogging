@@ -1,7 +1,7 @@
 <div class="dialog-container">
   <h2 mat-dialog-title>
     <mat-icon>add</mat-icon>
-    Add Log Entry
+    Add Audit Entry
   </h2>
 
   <mat-dialog-content>
@@ -33,7 +33,7 @@
             color="primary" 
             (click)="onSave()" 
             [disabled]="!logMessage.trim() || isLoading"
-            aria-label="Save log entry">
+            aria-label="Save audit entry">
       @if (isLoading) {
         <mat-spinner diameter="20" class="button-spinner"></mat-spinner>
       } @else {

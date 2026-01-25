@@ -69,7 +69,7 @@ export class LoggingAddDialogComponent {
       } catch (error) {
         console.error('Error adding log:', error);
         this.isLoading = false;
-        const errorMessage = error instanceof Error ? error.message : 'Failed to add log entry. Please try again.';
+        const errorMessage = error instanceof Error ? error.message : 'Failed to add audit entry. Please try again.';
         this.snackBar.open(errorMessage, 'Close', {
           duration: 5000,
           horizontalPosition: 'center',

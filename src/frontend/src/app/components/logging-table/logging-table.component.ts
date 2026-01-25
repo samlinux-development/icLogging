@@ -6,13 +6,13 @@ import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { MatChipsModule } from '@angular/material/chips';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import type { LogEntry } from '../../../../../declarations/backend/backend.did';
 import { LoggingDetailDialogComponent } from '../logging-detail-dialog/logging-detail-dialog.component';
 import { LoggingAddDialogComponent } from '../logging-add-dialog/logging-add-dialog.component';
 import { LogLevelService } from '../../services/log-level.service';
+import { DateFormatService } from '../../services/date-format.service';
 
 @Component({
   selector: 'app-logging-table',
@@ -23,7 +23,6 @@ import { LogLevelService } from '../../services/log-level.service';
     MatSortModule,
     MatButtonModule,
     MatIconModule,
-    MatChipsModule,
     MatDialogModule,
     MatTooltipModule
   ],
@@ -66,7 +65,8 @@ export class LoggingTableComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(
     private dialog: MatDialog,
     private cdr: ChangeDetectorRef,
-    public logLevelService: LogLevelService
+    public logLevelService: LogLevelService,
+    public dateFormatService: DateFormatService
   ) {
     // Set up custom sorting first
     this.setupSorting();
@@ -134,14 +134,10 @@ export class LoggingTableComponent implements OnInit, AfterViewInit, OnDestroy {
     };
   }
 
-  formatTimestamp(timestamp: bigint): string {
-    const date = new Date(Number(timestamp) / 1_000_000);
-    return date.toLocaleString();
-  }
 
   openDetailDialog(log: LogEntry): void {
     if (!log) {
-      console.error('Cannot open detail dialog: log entry is null or undefined');
+      console.error('Cannot open detail dialog: audit entry is null or undefined');
       return;
     }
     const isMobile = window.innerWidth <= 768;
