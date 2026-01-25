@@ -37,6 +37,34 @@ mat-dialog-content {
   color: rgba(0, 0, 0, 0.87);
 }
 
+.repo-link-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.repo-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--mat-primary-color, #1976d2);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+  }
+
+  mat-icon {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+  }
+}
+
 .feature-list {
   list-style: none;
   padding: 0;
