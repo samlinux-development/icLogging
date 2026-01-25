@@ -1,6 +1,7 @@
 # IC Decentralised Audit
 
-Demo URL: https://gtn6w-niaaa-aaaam-afxaa-cai.
+Demo URL: https://gtn6w-niaaa-aaaam-afxaa-cai.icp0.io/
+
 A production-ready audit logging application for the Internet Computer (IC) with a Motoko backend and Angular 21 frontend. Demonstrates immutable data structures, modern Angular patterns, and Material Design UI.
 
 ## Project Structure
