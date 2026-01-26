@@ -8,40 +8,61 @@ A production-ready audit logging application for the Internet Computer (IC) with
 
 ```
 icLogging/
-├── dfx.json                 # DFX project configuration
-├── mops.toml               # Motoko package manager configuration
+├── .gitignore              # Git ignore rules
+├── canister_ids.json      # Canister IDs for deployed canisters
+├── dfx.json               # DFX project configuration
+├── mops.toml              # Motoko package manager configuration
+├── package.json           # Root package.json with npm scripts
+├── package-lock.json      # Root package-lock.json
 ├── src/
 │   ├── backend/
-│   │   └── main.mo         # Motoko backend canister (immutable map-based storage)
-│   └── frontend/           # Angular 21 frontend application
+│   │   └── main.mo        # Motoko backend canister (immutable map-based storage)
+│   ├── declarations/      # Generated TypeScript bindings from Candid
+│   │   └── backend/
+│   │       ├── backend.did.d.ts
+│   │       ├── backend.did.js
+│   │       ├── index.d.ts
+│   │       └── index.js
+│   └── frontend/          # Angular 21 frontend application
 │       ├── src/
 │       │   ├── app/
 │       │   │   ├── components/
+│       │   │   │   ├── info-dialog/          # About/Info modal
 │       │   │   │   ├── logging/              # Main logging view component
-│       │   │   │   ├── logging-table/        # Table component with sorting
-│       │   │   │   ├── logging-add-dialog/    # Dialog for adding logs
+│       │   │   │   ├── logging-add-dialog/   # Dialog for adding logs
 │       │   │   │   ├── logging-detail-dialog/# Dialog for viewing log details
-│       │   │   │   └── info-dialog/           # About/Info modal
+│       │   │   │   └── logging-table/        # Table component with sorting
 │       │   │   ├── services/
-│       │   │   │   ├── ic-agent.service.ts    # IC agent initialization
-│       │   │   │   ├── logging.service.ts    # Logging API service
-│       │   │   │   └── log-level.service.ts  # Shared log level utilities
-│       │   │   ├── app.component.*           # Root component
+│       │   │   │   ├── date-format.service.ts # Date formatting utilities
+│       │   │   │   ├── ic-agent.service.ts   # IC agent initialization
+│       │   │   │   ├── log-level.service.ts  # Shared log level utilities
+│       │   │   │   └── logging.service.ts    # Logging API service
+│       │   │   ├── styles/
+│       │   │   │   └── dialog-shared.scss    # Shared dialog styles
+│       │   │   ├── app.component.html        # Root component template
+│       │   │   ├── app.component.scss        # Root component styles
+│       │   │   ├── app.component.ts          # Root component
 │       │   │   └── environments/             # Environment configuration
-│       │   ├── styles.scss                   # Global styles
-│       │   └── main.ts                       # Application entry point
-│       ├── angular.json
-│       ├── package.json
-│       └── tsconfig.json
-└── declarations/           # Generated TypeScript bindings from Candid
-    └── backend/
-        └── backend.did.ts
+│       │   ├── assets/                      # Static assets
+│       │   ├── favicon.ico                  # Favicon
+│       │   ├── index.html                   # Application entry HTML
+│       │   ├── main.ts                      # Application entry point
+│       │   └── styles.scss                  # Global styles
+│       ├── scripts/
+│       │   ├── build.js                     # Build script
+│       │   ├── deploy.js                    # Deploy script
+│       │   └── generate-env.js              # Environment generation script
+│       ├── angular.json                     # Angular CLI configuration
+│       ├── package.json                     # Frontend dependencies
+│       ├── package-lock.json                # Frontend lock file
+│       ├── tsconfig.app.json                # TypeScript config for app
+│       └── tsconfig.json                    # TypeScript configuration
 ```
 
 ## Prerequisites
 
 - [DFX SDK](https://internetcomputer.org/docs/current/developer-docs/setup/install/) installed
-- Node.js 20+ and npm installed
+- Node.js 20+ and npm installed, nvm use v22.12.0
 - Angular CLI 21 installed globally: `npm install -g @angular/cli@21`
 
 ## Setup Instructions

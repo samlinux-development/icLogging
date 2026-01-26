@@ -23,5 +23,6 @@
       "type": "ephemeral"
     }
   },
-  "output_env_file": ".env"
+  "output_env_file": ".env",
+  "dfx": "0.30.1"
 }
