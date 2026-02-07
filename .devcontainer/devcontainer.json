@@ -1,0 +1,21 @@
+{
+  "name": "Angular + dfx (Internet Computer)",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:20-bookworm",
+  "features": {
+    "ghcr.io/devcontainers/features/git:1": {}
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode"
+      ]
+    }
+  },
+  "postCreateCommand": "bash .devcontainer/postCreate.sh",
+  "forwardPorts": [4200, 4943],
+  "portsAttributes": {
+    "4200": { "label": "Angular Dev Server", "onAutoForward": "openBrowser" },
+    "4943": { "label": "dfx Replica", "onAutoForward": "notify" }
+  }
+}
