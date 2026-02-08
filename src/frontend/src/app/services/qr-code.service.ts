@@ -9,14 +9,18 @@ export class QrCodeService {
     return `${window.location.origin}/?entry=${entryId}`;
   }
 
-  async generateQrCodeDataUrl(text: string): Promise<string> {
+  private readonly levelColors: Record<string, string> = {
+    error: '#c62828',
+    warn: '#ef6c00',
+    info: '#1565c0'
+  };
+
+  async generateQrCodeDataUrl(text: string, level?: string): Promise<string> {
+    const dark = this.levelColors[(level ?? '').toLowerCase()] ?? '#000000';
     return QRCode.toDataURL(text, {
       width: 200,
       errorCorrectionLevel: 'M',
-      color: {
-        dark: '#c62828',
-        light: '#ffffff'
-      }
+      color: { dark, light: '#ffffff' }
     });
   }
 }

@@ -43,7 +43,7 @@ export class LoggingDetailDialogComponent implements OnInit {
   async ngOnInit() {
     if (this.data) {
       const url = this.qrCodeService.buildEntryUrl(this.data.id);
-      const dataUrl = await this.qrCodeService.generateQrCodeDataUrl(url);
+      const dataUrl = await this.qrCodeService.generateQrCodeDataUrl(url, this.data.level);
       this.qrCodeDataUrl.set(dataUrl);
     }
   }
