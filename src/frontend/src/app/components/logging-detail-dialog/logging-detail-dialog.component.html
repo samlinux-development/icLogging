@@ -37,6 +37,25 @@
           <div class="message-content">{{ data.message }}</div>
         </mat-card-content>
       </mat-card>
+
+      <!-- QR Code Card -->
+      @if (qrCodeDataUrl()) {
+        <mat-card class="qr-code-card">
+          <mat-card-header>
+            <mat-card-title>
+              <mat-icon class="section-icon">qr_code_2</mat-icon>
+              <span>QR Code</span>
+            </mat-card-title>
+          </mat-card-header>
+          <mat-divider></mat-divider>
+          <mat-card-content>
+            <div class="qr-code-content">
+              <img [src]="qrCodeDataUrl()" alt="QR code link to this entry" class="qr-code-image" />
+              <span class="qr-code-hint">Scan to open this entry</span>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      }
     </div>
   </mat-dialog-content>
 

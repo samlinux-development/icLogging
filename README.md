@@ -36,7 +36,8 @@ icLogging/
 │       │   │   │   ├── date-format.service.ts # Date formatting utilities
 │       │   │   │   ├── ic-agent.service.ts   # IC agent initialization
 │       │   │   │   ├── log-level.service.ts  # Shared log level utilities
-│       │   │   │   └── logging.service.ts    # Logging API service
+│       │   │   │   ├── logging.service.ts    # Logging API service
+│       │   │   │   └── qr-code.service.ts    # QR code generation service
 │       │   │   ├── styles/
 │       │   │   │   └── dialog-shared.scss    # Shared dialog styles
 │       │   │   ├── app.component.html        # Root component template
@@ -240,6 +241,7 @@ type LogEntry = {
 - **Audit Table**: Sortable table with columns for ID, Date/Time, and Level
 - **Add Audit Entries**: Dialog-based form to add new audit entries with level selection
 - **View Details**: Click any row to view full audit entry details in a modal
+- **QR Code Deep Links**: Each log entry detail dialog displays a QR code that links directly to that entry. Scanning the QR code (or opening the URL) auto-opens the entry's detail dialog. Uses the `?entry=<id>` query parameter for deep linking without a full Angular Router.
 - **Refresh**: Manual refresh button to reload audit entries from the backend
 - **About Dialog**: Information about the application and technology stack
 
@@ -264,6 +266,7 @@ type LogEntry = {
 - `LoggingService`: Handles all backend API calls for audit operations
 - `LogLevelService`: Shared utility for audit level colors and icons
 - `DateFormatService`: Utility service for formatting timestamps
+- `QrCodeService`: Generates QR code data URLs and builds deep-link entry URLs
 
 ### Production Features
 - **Memory Management**: Proper subscription cleanup with `takeUntil` pattern
